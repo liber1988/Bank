@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import SearchBar from "./Searchbar";
 import { useApiContext } from "../../context/ApiContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   minHeight: "100vh",
@@ -128,6 +128,9 @@ const User = () => {
           <p>There is no such Id</p>
         ) : null}
       </StyledList>
+      <Link to="/" className="back">
+        Back
+      </Link>
     </StyledContainer>
   );
 };

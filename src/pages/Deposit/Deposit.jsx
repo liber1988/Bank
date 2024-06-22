@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, TextField, styled } from "@mui/material";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useApiContext } from "../../context/ApiContext";
 import { EuroSymbol } from "@mui/icons-material";
 const StyledContainer = styled(Container)({
@@ -52,49 +52,54 @@ const Deposit = () => {
   };
 
   return (
-    <StyledContainer>
-      <h1 style={{ color: "white" }}>Withdraw from Deposit</h1>
-      <TextField
-        label="Amount to Withdraw"
-        type="number"
-        fullWidth
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        error={!!error}
-        helperText={error}
-        InputLabelProps={{
-          shrink: true,
-          style: { color: "white" },
-        }}
-        sx={{
-          "& .MuiInputBase-input": {
+    <>
+      <StyledContainer>
+        <h1 style={{ color: "white" }}>Deposit from Deposit</h1>
+        <TextField
+          label="Amount to Deposit"
+          type="number"
+          fullWidth
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          error={!!error}
+          helperText={error}
+          InputLabelProps={{
+            shrink: true,
+            style: { color: "white" },
+          }}
+          sx={{
+            "& .MuiInputBase-input": {
+              color: "white",
+            },
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "white",
+            },
+          }}
+          variant="outlined"
+          margin="normal"
+        />
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleWithdraw}
+          disabled={!amount}
+          sx={{
             color: "white",
-          },
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "white",
-          },
-        }}
-        variant="outlined"
-        margin="normal"
-      />
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={handleWithdraw}
-        disabled={!amount}
-        sx={{
-          color: "white",
-          backgroundColor: "#6A1B9A",
-          borderColor: "#6A1B9A",
-          "&:hover": {
-            backgroundColor: "#9c4dcc",
-          },
-        }}
-      >
-        <EuroSymbol /> Deposit
-      </Button>
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-    </StyledContainer>
+            backgroundColor: "#6A1B9A",
+            borderColor: "#6A1B9A",
+            "&:hover": {
+              backgroundColor: "#9c4dcc",
+            },
+          }}
+        >
+          <EuroSymbol /> Deposit
+        </Button>
+        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+      </StyledContainer>
+      <Link to="/" className="back">
+        Back
+      </Link>
+    </>
   );
 };
 
